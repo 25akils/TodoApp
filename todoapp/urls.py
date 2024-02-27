@@ -13,4 +13,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(next_page="login"),name="logout"),
     path("register/", RegisterTodoApp.as_view(), name="register"),
     path("complete/<int:pk>/", complete_task, name="complete"),
+    path('guest_login/', views.guest_login, name = 'guest_login'), #かんたんログイン用
 ]

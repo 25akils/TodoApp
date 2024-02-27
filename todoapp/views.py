@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 
 from todoapp.models import Task
 from django.http import JsonResponse
@@ -82,3 +83,10 @@ class RegisterTodoApp(FormView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
+
+def guest_login(request):
+    # ゲストユーザーが存在しない場合は作成し、存在する場合は選択します
+    guest_user = User.objects.get(username='guest')
+    # ユーザーをログインさせる
+    login(request, guest_user)
+    return redirect('tasks')

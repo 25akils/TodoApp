@@ -6,9 +6,9 @@
 </div>
 
 <div style="padding: 20px;">
-  <p>Title: <br>{{ task.title }}</p>
-  <p>Description: <br>{{ task.description }}</p>
-  <p>Status: <br>{% if task.completed %}完了{% else %}未完了{% endif %}</p>
+  <p>タイトル: <br>{{ task.title }}</p>
+  <p>内容: <br>{{ task.description }}</p>
+  <p>ステータス: <br>{% if task.completed %}完了{% else %}未完了{% endif %}</p>
 
 <a href="{% url 'tasks' %}">←戻る</a>
 </div>
