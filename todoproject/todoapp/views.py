@@ -89,4 +89,4 @@ def guest_login(request):
     if user is not None:
         # 認証成功の場合、ユーザーをログインさせる
         login(request, user)
-    return redirect('tasks')  # ログイン後のリダイレクト先を指定
+    return redirect('tasks')
