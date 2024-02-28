@@ -1,0 +1,31 @@
+{% extends 'todoapp/base.html' %}
+{% block content %}
+
+<div class="header">
+<h1>
+  {% if 'create' in request.path %}
+  タスクの追加
+  {% elif 'edit' in request.path %}
+  タスクの編集
+  {% endif %}
+</h1>
+</div>
+
+<div style="padding: 20px;">
+<form action="" method="post">{% csrf_token %}
+  <label for="">タイトル: </label>
+  {{form.title}}
+  <br>
+  <label for="">内容: </label>
+  {{form.description}}
+  {% if 'create' in request.path %}
+  <input class="button" type="submit" value="追加" style="margin-bottom: 15px;">
+  {% elif 'edit' in request.path %}
+  <input class="button" type="submit" value="保存" style="margin-bottom: 15px;">
+  {% endif %}
+</form>
+
+<a href="{% url 'tasks' %}">←戻る</a>
+</div>
+
+{% endblock content %}
