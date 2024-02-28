@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 
 from todoapp.models import Task
 from django.http import JsonResponse
@@ -82,3 +82,11 @@ class RegisterTodoApp(FormView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
+
+def guest_login(request):
+    # ゲストユーザーで認証
+    user = authenticate(username='guest', password='guestlogin')
+    if user is not None:
+        # 認証成功の場合、ユーザーをログインさせる
+        login(request, user)
+    return redirect('tasks')  # ログイン後のリダイレクト先を指定
